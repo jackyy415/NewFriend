@@ -18,14 +18,23 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 import { LoginStack } from "./AppNav";
+import { configureStore } from "@reduxjs/toolkit";
+import appReducers from "./src/redux/slices";
+import { Provider } from "react-redux";
+
+const store = configureStore({
+  reducer: appReducers
+})
 
 const App: () => React$Node = () => {
   return (
     <>
-      <NavigationContainer>
-        <StatusBar barStyle="dark-content" />
-        <LoginStack></LoginStack>
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <StatusBar barStyle="dark-content" />
+          <LoginStack></LoginStack>
+        </NavigationContainer>
+      </Provider>
     </>
   );
 };
