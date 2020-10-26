@@ -2,28 +2,29 @@ import React, {useState, useRef, useEffect, useLayoutEffect} from "react"
 import { SafeAreaView, ScrollView, View, Text, Pressable, TextInput, KeyboardAvoidingView } from "react-native"
 import { FlatList } from "react-native-gesture-handler";
 import io from "socket.io-client";
+import auth from '@react-native-firebase/auth';
 
-const Chat = () => {
+const Chat = (props) => {
     const [message, setMessage] = useState([]);
     const [input, setInput] = useState('');
     const [connected, setConnected] = useState(false);
     const socket = useRef(null);
     const scrollView = useRef(null);
+    const {route} = props;
 
     useEffect(() => {
+        let roomId = route.params.roomId;
+        // console.log(`Room ID: ${route.params.roomId}`);
         if (socket.current == null) {
-            connectSocket();
+            connectSocket(roomId);
         } else if (!socket.current.connected) {
-            connectSocket();
+            connectSocket(roomId);
         }        
     }, []);
 
-    useLayoutEffect(() => {
-        // scrollView.current.scrollToEnd();
-    }, [message])
 
     const call = async () => {
-        let res = await fetch("http://localhost:3000/", {            
+        let res = await fetch("http://localhost:3000", {            
             method: 'POST',          
             headers: {
                 Accept: 'application/json',
@@ -35,10 +36,10 @@ const Chat = () => {
         console.log(text);
     }    
 
-    const connectSocket = () => {
+    const connectSocket = (roomId) => {
         
         // socket.current = io('http://192.168.1.96:3000');
-        socket.current = io('http://localhost:3000');
+        socket.current = io(`http://localhost:3000?roomId=${roomId}`);
         
         socket.current.on('connect', () => {   
             console.log('connect');         
@@ -75,12 +76,19 @@ const Chat = () => {
     }
 
     const sendMsg = () => {        
-        socket.current.emit("chat message", {target: socket.current.id, msg: input});
+        socket.current.emit("chat message", {roomId: route.params.roomId,  target: socket.current.id, msg: input});
         setInput("");
+    }
+
+    const fbLogout = () => {
+        auth().signOut();
     }
 
     return (
         <SafeAreaView style={{flex: 1}}>  
+            <Pressable onPress={fbLogout}>
+                <Text>Logout</Text>
+            </Pressable>
             {connected?  
             <View>
                 <Text>Connected</Text>

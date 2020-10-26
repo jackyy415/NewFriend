@@ -20,7 +20,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		93469C2DA25F898D707EC47D /* libPods-NewFriend-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E9BF88CB3B7685511161941C /* libPods-NewFriend-tvOSTests.a */; };
 		B05B47BCC28FE4B974567801 /* libPods-NewFriend.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CFBAE90AAD0E8DE24550DE29 /* libPods-NewFriend.a */; };
-		F0011C75252303AF0061A293 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0011C74252303AF0061A293 /* GoogleService-Info.plist */; };
+		F05ABB6525435DED00010D11 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F05ABB6425435DED00010D11 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,8 +67,8 @@
 		E9BF88CB3B7685511161941C /* libPods-NewFriend-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-NewFriend-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F0011C74252303AF0061A293 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0011CBD252315020061A293 /* NewFriend.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = NewFriend.entitlements; path = NewFriend/NewFriend.entitlements; sourceTree = "<group>"; };
+		F05ABB6425435DED00010D11 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE309241C7C5CA05E1958CA0 /* Pods-NewFriend-NewFriendTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewFriend-NewFriendTests.release.xcconfig"; path = "Target Support Files/Pods-NewFriend-NewFriendTests/Pods-NewFriend-NewFriendTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,7 +129,6 @@
 			isa = PBXGroup;
 			children = (
 				F0011CBD252315020061A293 /* NewFriend.entitlements */,
-				F0011C74252303AF0061A293 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -179,6 +178,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				F05ABB6425435DED00010D11 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* NewFriend */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* NewFriendTests */,
@@ -348,7 +348,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				F0011C75252303AF0061A293 /* GoogleService-Info.plist in Resources */,
+				F05ABB6525435DED00010D11 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

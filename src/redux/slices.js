@@ -11,10 +11,11 @@ export const test = createAsyncThunk(
 const appSlices = createSlice({
     name: 'app',
     initialState: {
-        authenticated: false
+        authenticated: undefined
     },
     reducers: {
         login: (state, action) => { 
+            console.log("Received login");
             state.authenticated = true
         },
         logout: (state, action) => {

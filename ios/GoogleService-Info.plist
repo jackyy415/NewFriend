@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>1005893937431-4k7mdllc4dj2uaevi2jbu832esfmgmqh.apps.googleusercontent.com</string>
+	<string>1005893937431-5glitlnh58g13pm7cfn02gmfqgnv3uhj.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.1005893937431-4k7mdllc4dj2uaevi2jbu832esfmgmqh</string>
+	<string>com.googleusercontent.apps.1005893937431-5glitlnh58g13pm7cfn02gmfqgnv3uhj</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDjFMiu5K3dSi25J_YeJFYy6-wp8tzmxLY</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.kodku.newfriend</string>
+	<string>com.kodku.NewFriend</string>
 	<key>PROJECT_ID</key>
 	<string>newfriend-ea103</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:1005893937431:ios:942fbf685a8e8cd7a16f52</string>
+	<string>1:1005893937431:ios:1e345212df25eae9a16f52</string>
 	<key>DATABASE_URL</key>
 	<string>https://newfriend-ea103.firebaseio.com</string>
 </dict>
