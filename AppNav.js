@@ -30,9 +30,10 @@ export const MainStack = () => {
             headerStyle: {
                 backgroundColor: '#4574EB'
             },
-            headerTintColor: '#FFF',
-            initialRouteName: 'Room'
-        }}>
+            headerTintColor: '#FFF',            
+            }}
+            initialRouteName='Room'
+        >
             <MainStackNav.Screen name="PhoneChecker" component={PhoneChecker} options={(props, navigation) => (
                 {title: 'Stock'}
             )}></MainStackNav.Screen>
