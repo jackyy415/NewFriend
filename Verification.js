@@ -29,7 +29,7 @@ const Verification = (props) => {
     }
 
     return (
-        <View>
+        <View style={{padding: 10}}>
             <View style={{ marginTop: 15}}> 
                 <Text style={{fontSize: 20}}>Verification Code</Text>
                 <TextInput style={{height: 40, borderBottomWidth: 1, fontSize: 20}} keyboardType={'numeric'} value={code} onChangeText={val => setCode(val)}></TextInput>

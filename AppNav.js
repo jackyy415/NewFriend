@@ -8,6 +8,7 @@ import Verification from "./Verification";
 import { useSelector, useDispatch } from "react-redux";
 import ListRooms from "./src/component/ListRooms";
 import PhoneChecker from "./src/component/PhoneChecker";
+import Room from "./src/component/Room";
 
 const LoginStackNav = createStackNavigator();
 export const LoginStack = () => {
@@ -29,12 +30,14 @@ export const MainStack = () => {
             headerStyle: {
                 backgroundColor: '#4574EB'
             },
-            headerTintColor: '#FFF'            
+            headerTintColor: '#FFF',
+            initialRouteName: 'Room'
         }}>
             <MainStackNav.Screen name="PhoneChecker" component={PhoneChecker} options={(props, navigation) => (
-                {title: 'iPhone有貨未？'}
+                {title: 'Stock'}
             )}></MainStackNav.Screen>
             <MainStackNav.Screen name="ListRooms" component={ListRooms}></MainStackNav.Screen>
+            <MainStackNav.Screen name="Room" component={Room}></MainStackNav.Screen>
             <MainStackNav.Screen name="Chat" component={Chat}></MainStackNav.Screen>            
         </MainStackNav.Navigator>
         
