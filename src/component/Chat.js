@@ -1,8 +1,9 @@
 import React, {useState, useRef, useEffect, useLayoutEffect} from "react"
-import { SafeAreaView, ScrollView, View, Text, Pressable, TextInput, KeyboardAvoidingView } from "react-native"
-import { FlatList } from "react-native-gesture-handler";
+import { FlatList, SafeAreaView, ScrollView, View, Text, Pressable, TextInput, KeyboardAvoidingView } from "react-native"
 import io from "socket.io-client";
 import auth from '@react-native-firebase/auth';
+import ChatActions from "../socket/ChatActions";
+import RoomSocket from "../socket/RoomSocket";
 
 const Chat = (props) => {
     const [message, setMessage] = useState([]);
@@ -12,14 +13,35 @@ const Chat = (props) => {
     const scrollView = useRef(null);
     const {route} = props;
 
+    const connectedCb = () => {
+        console.log("Connected");
+    } 
+    
+    const disconnectedCb = () => {
+        console.log("Disconnected");
+    } 
+    
+    const errorCb = () => {
+        console.log("Error Cb");
+    } 
+    
+    const eventCb = () => {
+        console.log("Received event");
+    }
+
     useEffect(() => {
         let roomId = route.params.roomId;
         // console.log(`Room ID: ${route.params.roomId}`);
-        if (socket.current == null) {
-            connectSocket(roomId);
-        } else if (!socket.current.connected) {
-            connectSocket(roomId);
-        }        
+        
+        if (!socket.current == null) {
+            socket.current = new RoomSocket(roomId);
+            socket.current.connectSocket()
+        }
+        // if (socket.current == null) {
+        //     connectSocket(roomId);
+        // } else if (!socket.current.connected) {
+        //     connectSocket(roomId);
+        // }        
     }, []);
 
 
@@ -36,6 +58,7 @@ const Chat = (props) => {
         console.log(text);
     }    
 
+    /*
     const connectSocket = (roomId) => {
         
         // socket.current = io('http://192.168.1.96:3000');
@@ -66,7 +89,7 @@ const Chat = (props) => {
             console.log(e);
         })
 
-        socket.current.on("chat message", (msg) => {         
+        socket.current.on(ChatActions.SendMessage, (msg) => {         
             let newMsg = [...message, msg];            
             setMessage(prevMsg => {                
                 return [...prevMsg, newMsg];
@@ -74,9 +97,10 @@ const Chat = (props) => {
             
         })        
     }
+    */
 
     const sendMsg = () => {        
-        socket.current.emit("chat message", {roomId: route.params.roomId,  target: socket.current.id, msg: input});
+        socket.current.emit(ChatActions.SendMessage, {roomId: route.params.roomId,  target: socket.current.id, msg: input});
         setInput("");
     }
 

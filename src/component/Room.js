@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from "react"
-import {SafeAreaView, View, Text, ScrollView} from "react-native"
+import {SafeAreaView, View, Text, ScrollView, Pressable} from "react-native"
 
-const Room = () => {
+const Room = (props) => {
     let [roomId, setRoomId] = useState('');
+    let {navigation} = props;
+
+    const goToRoom = () => {
+        navigation.navigate("Chat", {roomId: roomId});
+    }
+
     useEffect(() => {
 
         const findRoom = async () => {
@@ -27,6 +33,9 @@ const Room = () => {
         <SafeAreaView>
             <View>
                 <Text>This is Room: {roomId}</Text>
+                <Pressable onPress={goToRoomk}>
+                    <Text>Go to room</Text>
+                </Pressable>
             </View>
         </SafeAreaView>
     )
