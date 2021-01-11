@@ -22,20 +22,23 @@ import AuthLoading from "./AuthLoading";
 import { configureStore } from "@reduxjs/toolkit";
 import appReducers from "./src/redux/slices";
 import { Provider } from "react-redux";
+import store from "./src/redux/store"
+import RoomSocketProvider, { RoomSocketContext } from "./src/provider/RoomSocketProvider";
 
-const store = configureStore({
-  reducer: appReducers
-})
 
 const App: () => React$Node = () => {
   return (
     <>
+    
       <Provider store={store}>
+      <RoomSocketProvider>
         <NavigationContainer>
           <StatusBar barStyle="dark-content" />
           <AuthLoading></AuthLoading>
         </NavigationContainer>
+        </RoomSocketProvider>
       </Provider>
+      
     </>
   );
 };

@@ -10,6 +10,8 @@ import ListRooms from "./src/component/ListRooms";
 import PhoneChecker from "./src/component/PhoneChecker";
 import Room from "./src/component/Room";
 
+
+
 const LoginStackNav = createStackNavigator();
 export const LoginStack = () => {
     return (
@@ -25,22 +27,23 @@ export const LoginStack = () => {
 const MainStackNav = createStackNavigator();
 export const MainStack = () => {
     return (
-  
-        <MainStackNav.Navigator screenOptions={{
-            headerStyle: {
-                backgroundColor: '#4574EB'
-            },
-            headerTintColor: '#FFF',            
-            }}
-            initialRouteName='Room'
-        >
-            <MainStackNav.Screen name="PhoneChecker" component={PhoneChecker} options={(props, navigation) => (
-                {title: 'Stock'}
-            )}></MainStackNav.Screen>
-            <MainStackNav.Screen name="ListRooms" component={ListRooms}></MainStackNav.Screen>
-            <MainStackNav.Screen name="Room" component={Room}></MainStackNav.Screen>
-            <MainStackNav.Screen name="Chat" component={Chat}></MainStackNav.Screen>            
-        </MainStackNav.Navigator>
+        
+            <MainStackNav.Navigator screenOptions={{
+                headerStyle: {
+                    backgroundColor: '#4574EB'
+                },
+                headerTintColor: '#FFF',            
+                }}
+                initialRouteName='Room'
+            >
+                <MainStackNav.Screen name="PhoneChecker" component={PhoneChecker} options={(props, navigation) => (
+                    {title: 'Stock'}
+                )}></MainStackNav.Screen>
+                <MainStackNav.Screen name="ListRooms" component={ListRooms}></MainStackNav.Screen>
+                <MainStackNav.Screen name="Room" component={Room}></MainStackNav.Screen>
+                <MainStackNav.Screen name="Chat" component={Chat}></MainStackNav.Screen>            
+            </MainStackNav.Navigator>
+        
         
     )
 } 

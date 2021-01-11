@@ -1,4 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import RoomSocket from '../socket/RoomSocket';
+
 
 
 export const test = createAsyncThunk(
@@ -8,10 +10,15 @@ export const test = createAsyncThunk(
     }
 )
 
+var roomSocket = null;
+
+
 const appSlices = createSlice({
     name: 'app',
     initialState: {
-        authenticated: undefined
+        authenticated: undefined,
+        connectedRoom: false,
+        roomId: ''        
     },
     reducers: {
         login: (state, action) => { 
@@ -20,6 +27,17 @@ const appSlices = createSlice({
         },
         logout: (state, action) => {
             state.authenticated = false
+        },
+        setConnected: (state, action) => {
+            state.connectedRoom = true;
+        },
+        connectRoom: (state, action) => {
+            console.log("Connect room");
+            let roomId = action.payload;
+            state.roomId = roomId;
+            
+            // console.log(action.payload);
+            // state.connectedRoom = true;
         }
     },
     extraReducers: {
@@ -30,5 +48,5 @@ const appSlices = createSlice({
     }
 })
 
-export const {login, logout} = appSlices.actions;
+export const {login, logout, connectRoom, setConnected} = appSlices.actions;
 export default appSlices.reducer;

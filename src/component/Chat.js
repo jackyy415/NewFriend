@@ -1,9 +1,11 @@
-import React, {useState, useRef, useEffect, useLayoutEffect} from "react"
+import React, {useState, useRef, useEffect, useLayoutEffect, useContext} from "react"
 import { FlatList, SafeAreaView, ScrollView, View, Text, Pressable, TextInput, KeyboardAvoidingView } from "react-native"
 import io from "socket.io-client";
 import auth from '@react-native-firebase/auth';
 import ChatActions from "../socket/ChatActions";
 import RoomSocket from "../socket/RoomSocket";
+import { useSelector, useDispatch } from "react-redux";
+import RoomSocketProvider, { RoomSocketContext } from "../provider/RoomSocketProvider";
 
 const Chat = (props) => {
     const [message, setMessage] = useState([]);
@@ -11,39 +13,32 @@ const Chat = (props) => {
     const [connected, setConnected] = useState(false);
     const socket = useRef(null);
     const scrollView = useRef(null);
-    const {route} = props;
+    const {route, navigation} = props;
 
-    const connectedCb = () => {
-        console.log("Connected");
-    } 
-    
-    const disconnectedCb = () => {
-        console.log("Disconnected");
-    } 
-    
-    const errorCb = () => {
-        console.log("Error Cb");
-    } 
-    
-    const eventCb = () => {
-        console.log("Received event");
-    }
+    const connectedRoom = useSelector(state => state.connectedRoom);
+    const dispatch  = useDispatch();
+
+    const roomSocket = useContext(RoomSocketContext);
 
     useEffect(() => {
         let roomId = route.params.roomId;
-        // console.log(`Room ID: ${route.params.roomId}`);
         
-        if (!socket.current == null) {
-            socket.current = new RoomSocket(roomId);
-            socket.current.connectSocket()
-        }
-        // if (socket.current == null) {
-        //     connectSocket(roomId);
-        // } else if (!socket.current.connected) {
-        //     connectSocket(roomId);
-        // }        
-    }, []);
+        let rmListener = roomSocket.addEventListener((eventName, payload) => {
+            console.log("Chat Event Listener received event");
+            console.log(eventName);
+            console.log(payload);
+            // let newMsg = [...message, payload];            
+            setMessage(prevMsg => {                
+                return [...prevMsg, payload];
+            });
+        })
 
+        return () => {
+            if(rmListener != null) {
+                rmListener();
+            }
+        }   
+    }, []);
 
     const call = async () => {
         let res = await fetch("http://localhost:3000", {            
@@ -100,7 +95,9 @@ const Chat = (props) => {
     */
 
     const sendMsg = () => {        
-        socket.current.emit(ChatActions.SendMessage, {roomId: route.params.roomId,  target: socket.current.id, msg: input});
+        // socket.current.emit(ChatActions.SendMessage, {roomId: route.params.roomId,  target: socket.current.id, msg: input});
+        roomSocket.sendMsg(input);
+        // console.log(roomSocketContext);
         setInput("");
     }
 
@@ -113,7 +110,7 @@ const Chat = (props) => {
             <Pressable onPress={fbLogout}>
                 <Text>Logout</Text>
             </Pressable>
-            {connected?  
+            {connectedRoom?  
             <View>
                 <Text>Connected</Text>
             </View>
